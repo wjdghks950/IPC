@@ -49,13 +49,14 @@ int main(int argc, char * argv[])
         fprintf(stderr, "Select another key value.\n");
         exit(1);
     }
-    printf("Parent thread(rcv_qid): %d\n", rcv_queue);
+    //printf("Parent thread(rcv_qid): %d\n", rcv_queue);
+
     pthread_attr_init(&attr);
     pthread_create(&tid, &attr, receiver, &rcv_queue); //create a child thread - receiver
 
     while(repeat)
     {
-        printf("[msg to send] ");
+        printf("\n[msg to send] ");
         if(fgets(str_buf, BUF_SIZE, stdin) == NULL)
             fprintf(stderr, "Error, NULL received\n");
         else{
@@ -93,7 +94,7 @@ void* receiver(void* param)
     mdata d;
     sprintf(d.mtext, "%s", "\0"); //clear the message buffer
     int *rcv_qid = (int*)param;   
-    printf("Child thread(rcv_qid): %d\n", *rcv_qid); 
+    //printf("Child thread(rcv_qid): %d\n", *rcv_qid); 
     
     while(repeat)
     {
@@ -102,7 +103,7 @@ void* receiver(void* param)
             //perror("msgrcv() failed");
         }
         if(d.mtext[0] != '\0'){
-            printf("[incoming] %s\n", d.mtext);
+            printf("\n[incoming] %s\n", d.mtext);
             sprintf(d.mtext, "%s", "\0"); //clear the message buffer
         }
 
