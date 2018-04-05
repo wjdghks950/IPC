@@ -40,11 +40,13 @@ int main(int argc, char * argv[])
     rcv_key = atoi(argv[2]); //receive key
 
     if(-1 == (snd_queue = msgget((key_t)snd_key, IPC_CREAT|0600))){
-        perror("snd_queue msgget() failed");
+        perror("Failed to create snd_queue.");
+        fprintf(stderr, "Select another key value.\n");
         exit(1);
     }
     if(-1 == (rcv_queue = msgget((key_t)rcv_key, IPC_CREAT|0600))){
-        perror("rcv_queue msgget() failed");
+        perror("Failed to create rcv_queue");
+        fprintf(stderr, "Select another key value.\n");
         exit(1);
     }
     printf("Parent thread(rcv_qid): %d\n", rcv_queue);
