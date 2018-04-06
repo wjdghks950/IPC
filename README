@@ -1,17 +1,17 @@
-Message Passing between Threads in C (POSIX)
-===========================================
+# Message Passing between Threads in C (POSIX)
 
-#Prerequisites
+
+## Prerequisites
 
 Installation of gcc compiler.
 
-#Builds
+## Builds
 
 $ gcc -o a.out msg_passIPC.c -pthread
 
 The "-pthread" option allows the compilation of POSIX pthread functions
 
-#Execution
+## Execution
 
 $ ./a.out [send_key] [receive_key]
 
